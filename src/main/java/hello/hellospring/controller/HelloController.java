@@ -12,7 +12,7 @@ public class HelloController   {
 
     @GetMapping
     public String hello(Model model){
-        model.addAttribute("data","hello!!");
+        model.addAttribute("data","hello!!"); //value 객체(hello!!)를 name 이름으로 추가한다.
         return "hello";
     }
 
