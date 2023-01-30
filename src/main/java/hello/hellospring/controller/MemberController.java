@@ -34,7 +34,7 @@ public class MemberController {
 
         memberService.join(member);
 
-        return "redirect:/members"; //회원가입이 끝났으니 홈화면으로 가기.
+        return "redirect:/"; //회원가입이 끝났으니 홈화면으로 가기.
     }
 
     @GetMapping("/members")
