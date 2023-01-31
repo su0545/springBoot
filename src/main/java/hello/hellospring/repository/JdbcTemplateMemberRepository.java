@@ -8,8 +8,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +37,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
     }
 
 
-    //jdbcTemplate에서 query날리고 그 결과를 memberRowMapper로 매핑해주고 list로 바꿔서 Optional로 반환.
+    //jdbcTemplate에서 query날리고 그 결과를 memberRowMapper로 매핑해주고 list로 바꿔서 Optional로 반환
     @Override
     public Optional<Member> findById(Long id) {
         List<Member> result = jdbcTemplate.query("select * from member where id = ?", memberRowMapper(), id);
