@@ -1,5 +1,6 @@
 package hello.hellospring;
 
+import hello.hellospring.aop.TimeTraceAop;
 import hello.hellospring.repository.JdbcTemplateMemberRepository;
 import hello.hellospring.repository.JpaMemberRepository;
 import hello.hellospring.repository.MemberRepository;
@@ -17,22 +18,24 @@ import java.util.Map;
 @Configuration
 public class SpringConfig {
 
-    private EntityManager em;
+    private final MemberRepository memberRepository;
 
     @Autowired
-    public SpringConfig(EntityManager em) {
-        this.em = em;
+    public SpringConfig(MemberRepository memberRepository){
+        this.memberRepository = memberRepository;
     }
+
 
     @Bean
     public MemberService memberService(){ //스프링 Bean에 올리기
-        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 
-    @Bean
-    public MemberRepository memberRepository() { //스프링 Bean에 올리기
-        return new JpaMemberRepository(em);
+
+//    @Bean
+//    public MemberRepository memberRepository() { //스프링 Bean에 올리기
+//        return new JpaMemberRepository(em);
 //        return new MemoryMemberRepository();
 
-    }
+
 }
